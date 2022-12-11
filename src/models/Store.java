@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Store {
@@ -10,14 +11,17 @@ public class Store {
 
     List<Branch> branches; // Ganclik-mall
 
-    public Store() {
-    }
-
-
-
-    public Store(int id, String storeName, List<Branch> branches) {
+    public Store(int id, String storeName) {
         this.id = id;
         this.storeName = storeName;
-        this.branches = branches;
+        this.branches = new ArrayList<>();
+    }
+
+    public void addBranch(Branch branch) {
+        this.branches.add(branch);
+    }
+
+    public List<Branch> getBranches() {
+        return branches;
     }
 }

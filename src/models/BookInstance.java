@@ -49,5 +49,14 @@ public class BookInstance {
     public void setOutOfStock(Boolean outOfStock) {
         isOutOfStock = outOfStock;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Serial Number: %s\nBookName: %s\nBranch Name: %s\nOutOfStock: %b",
+                this.getSerialNumber(),
+                this.getBook().getBookName(),
+                this.getBranch().getBranchName(),
+                this.getOutOfStock());
+    }
 }
 

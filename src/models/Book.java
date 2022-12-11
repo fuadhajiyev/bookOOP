@@ -1,21 +1,24 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Book {
     int id;
-    String bookName;// Cinayet ve ceza
-    List<Author> authors; // dostoyevski
-    Publisher publisher; // baki neshriyyat
+    String bookName;
+    Author author;
+    Publisher publisher;
+    List<BookInstance> bookInstances;
 
     public Book() {
     }
 
-    public Book(int id, String bookName, List<Author> authors, Publisher publisher) {
+    public Book(int id, String bookName, Author author, Publisher publisher) {
         this.id = id;
         this.bookName = bookName;
-        this.authors = authors;
+        this.author = author;
         this.publisher = publisher;
+        this.bookInstances = new ArrayList<>();
     }
 
     public int getId() {
@@ -34,12 +37,12 @@ public class Book {
         this.bookName = bookName;
     }
 
-    public List<Author> getAuthors() {
-        return authors;
+    public Author getAuthor() {
+        return author;
     }
 
-    public void setAuthors(List<Author> authors) {
-        this.authors = authors;
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     public Publisher getPublisher() {
@@ -50,13 +53,23 @@ public class Book {
         this.publisher = publisher;
     }
 
+    public void addBookInstance(BookInstance bookInstance) {
+        if (bookInstance.getBook().getId() != this.getId()) {
+            throw new RuntimeException("The given book instance does not belong this requested book");
+        }
+        this.bookInstances.add(bookInstance);
+    }
+
+    public List<BookInstance> getBookInstances() {
+        return bookInstances;
+    }
+
     @Override
     public String toString() {
-        return "models.Book{" +
-                "id=" + id +
-                ", bookName='" + bookName + '\'' +
-                ", authors=" + authors +
-                ", publisher=" + publisher +
-                '}';
+        return String.format("ID: %d\nBookName: %s\nAuthorName: %s\nPublisherName: %s",
+                this.getId(),
+                this.getBookName(),
+                this.getAuthor().getAuthorName(),
+                this.getPublisher().getPublisherName());
     }
 }

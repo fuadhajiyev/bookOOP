@@ -30,9 +30,8 @@ public class Publisher {
 
     @Override
     public String toString() {
-        return "Publisher{" +
-                "id=" + id +
-                ", publisherName='" + publisherName + '\'' +
-                '}';
+        return String.format("ID: %d\nPublisherName: %s",
+                this.getId(),
+                this.getPublisherName());
     }
 }

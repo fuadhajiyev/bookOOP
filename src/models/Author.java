@@ -12,4 +12,18 @@ public class Author {
         this.authorName = authorName;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("ID: %d\nAuthorName: %s",
+                this.getId(),
+                this.getAuthorName());
+    }
 }
